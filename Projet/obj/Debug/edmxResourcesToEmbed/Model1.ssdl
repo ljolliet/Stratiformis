@@ -1,0 +1,628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Classique_Web_2017Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Abonne">
+    <Key>
+      <PropertyRef Name="Code_Abonne" />
+    </Key>
+    <Property Name="Code_Abonne" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Abonne" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="10" />
+    <Property Name="Password" Type="nvarchar" MaxLength="80" />
+    <Property Name="Adresse" Type="varchar" MaxLength="50" />
+    <Property Name="Ville" Type="varchar" MaxLength="50" />
+    <Property Name="Code_Postal" Type="varchar" MaxLength="50" />
+    <Property Name="Code_Pays" Type="int" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+    <Property Name="Credit" Type="int" />
+    <Property Name="Prenom_Abonne" Type="nvarchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="Achat">
+    <Key>
+      <PropertyRef Name="Code_Achat" />
+    </Key>
+    <Property Name="Code_Achat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code_Enregistrement" Type="int" />
+    <Property Name="Code_Abonne" Type="int" />
+    <Property Name="Achat_Confirme" Type="bit" />
+  </EntityType>
+  <EntityType Name="Album">
+    <Key>
+      <PropertyRef Name="Code_Album" />
+    </Key>
+    <Property Name="Code_Album" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titre_Album" Type="nvarchar" MaxLength="400" Nullable="false" />
+    <Property Name="Annee_Album" Type="int" />
+    <Property Name="Code_Genre" Type="int" />
+    <Property Name="Code_Editeur" Type="int" />
+    <Property Name="Pochette" Type="varbinary(max)" />
+    <Property Name="ASIN" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Composer">
+    <Key>
+      <PropertyRef Name="Code_Composer" />
+    </Key>
+    <Property Name="Code_Composer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code_Musicien" Type="int" />
+    <Property Name="Code_Oeuvre" Type="int" />
+  </EntityType>
+  <EntityType Name="Composition">
+    <Key>
+      <PropertyRef Name="Code_Composition" />
+    </Key>
+    <Property Name="Code_Composition" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titre_Composition" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Annee" Type="int" />
+    <Property Name="Composante_Composition" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Composition_Disque">
+    <Key>
+      <PropertyRef Name="Code_Contenir" />
+    </Key>
+    <Property Name="Code_Contenir" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code_Disque" Type="int" />
+    <Property Name="Code_Morceau" Type="int" />
+    <Property Name="Position" Type="int" />
+  </EntityType>
+  <EntityType Name="Composition_Oeuvre">
+    <Key>
+      <PropertyRef Name="Code_Composer_Oeuvre" />
+    </Key>
+    <Property Name="Code_Composer_Oeuvre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code_Oeuvre" Type="int" />
+    <Property Name="Code_Composition" Type="int" />
+  </EntityType>
+  <EntityType Name="Direction">
+    <Key>
+      <PropertyRef Name="Code_Direction" />
+    </Key>
+    <Property Name="Code_Direction" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code_Musicien" Type="int" />
+    <Property Name="Code_Morceau" Type="int" />
+    <Property Name="Code_Orchestre" Type="int" />
+  </EntityType>
+  <EntityType Name="Disque">
+    <Key>
+      <PropertyRef Name="Code_Disque" />
+    </Key>
+    <Property Name="Code_Disque" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code_Album" Type="int" Nullable="false" />
+    <Property Name="Reference_Album" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Reference_Disque" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Editeur">
+    <Key>
+      <PropertyRef Name="Code_Editeur" />
+    </Key>
+    <Property Name="Code_Editeur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Editeur" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Code_Pays" Type="int" />
+  </EntityType>
+  <EntityType Name="Enregistrement">
+    <Key>
+      <PropertyRef Name="Code_Morceau" />
+    </Key>
+    <Property Name="Code_Morceau" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Code_Composition" Type="int" Nullable="false" />
+    <Property Name="Nom_de_Fichier" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Duree" Type="nchar" MaxLength="10" />
+    <Property Name="Duree_Seconde" Type="int" />
+    <Property Name="Prix" Type="money" />
+    <Property Name="Extrait" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Genre">
+    <Key>
+      <PropertyRef Name="Code_Genre" />
+    </Key>
+    <Property Name="Code_Genre" Type="int" Nullable="false" />
+    <Property Name="Libelle_Abrege" Type="nvarchar" MaxLength="60" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Instrument">
+    <Key>
+      <PropertyRef Name="Code_Instrument" />
+    </Key>
+    <Property Name="Code_Instrument" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Instrument" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Image" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Instrumentation">
+    <Key>
+      <PropertyRef Name="Code_Instrumentation" />
+    </Key>
+    <Property Name="Code_Instrumentation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code_Oeuvre" Type="int" />
+    <Property Name="Code_Instrument" Type="int" />
+  </EntityType>
+  <EntityType Name="Interpreter">
+    <Key>
+      <PropertyRef Name="Code_Interpreter" />
+    </Key>
+    <Property Name="Code_Interpreter" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code_Morceau" Type="int" />
+    <Property Name="Code_Musicien" Type="int" />
+    <Property Name="Code_Instrument" Type="int" />
+  </EntityType>
+  <EntityType Name="Musicien">
+    <Key>
+      <PropertyRef Name="Code_Musicien" />
+    </Key>
+    <Property Name="Code_Musicien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Musicien" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Prenom_Musicien" Type="nvarchar" MaxLength="50" />
+    <Property Name="Annee_Naissance" Type="int" />
+    <Property Name="Annee_Mort" Type="int" />
+    <Property Name="Code_Pays" Type="int" />
+    <Property Name="Code_Genre" Type="int" />
+    <Property Name="Code_Instrument" Type="int" />
+    <Property Name="Photo" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Oeuvre">
+    <Key>
+      <PropertyRef Name="Code_Oeuvre" />
+    </Key>
+    <Property Name="Code_Oeuvre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titre_Oeuvre" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Sous_Titre" Type="nvarchar" MaxLength="200" />
+    <Property Name="Tonalite" Type="nvarchar" MaxLength="40" />
+    <Property Name="Code_Type" Type="int" />
+    <Property Name="Annee" Type="int" />
+    <Property Name="Opus" Type="nvarchar" MaxLength="40" />
+    <Property Name="Numéro_Opus" Type="int" />
+  </EntityType>
+  <EntityType Name="Orchestres">
+    <Key>
+      <PropertyRef Name="Code_Orchestre" />
+    </Key>
+    <Property Name="Code_Orchestre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Orchestre" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pays">
+    <Key>
+      <PropertyRef Name="Code_Pays" />
+    </Key>
+    <Property Name="Code_Pays" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Pays" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Type_Morceaux">
+    <Key>
+      <PropertyRef Name="Code_Type" />
+    </Key>
+    <Property Name="Code_Type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Libelle_Type" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK__Abonné__Code_Pay__236943A5">
+    <End Role="Pays" Type="Self.Pays" Multiplicity="0..1" />
+    <End Role="Abonne" Type="Self.Abonne" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pays">
+        <PropertyRef Name="Code_Pays" />
+      </Principal>
+      <Dependent Role="Abonne">
+        <PropertyRef Name="Code_Pays" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Achat_Abonné">
+    <End Role="Abonne" Type="Self.Abonne" Multiplicity="0..1" />
+    <End Role="Achat" Type="Self.Achat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Abonne">
+        <PropertyRef Name="Code_Abonne" />
+      </Principal>
+      <Dependent Role="Achat">
+        <PropertyRef Name="Code_Abonne" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Achat_Enregistrement">
+    <End Role="Enregistrement" Type="Self.Enregistrement" Multiplicity="0..1" />
+    <End Role="Achat" Type="Self.Achat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enregistrement">
+        <PropertyRef Name="Code_Morceau" />
+      </Principal>
+      <Dependent Role="Achat">
+        <PropertyRef Name="Code_Enregistrement" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Album_Editeur">
+    <End Role="Editeur" Type="Self.Editeur" Multiplicity="0..1" />
+    <End Role="Album" Type="Self.Album" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Editeur">
+        <PropertyRef Name="Code_Editeur" />
+      </Principal>
+      <Dependent Role="Album">
+        <PropertyRef Name="Code_Editeur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Album_Genre">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+    <End Role="Album" Type="Self.Album" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="Code_Genre" />
+      </Principal>
+      <Dependent Role="Album">
+        <PropertyRef Name="Code_Genre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Composer_Musicien">
+    <End Role="Musicien" Type="Self.Musicien" Multiplicity="0..1" />
+    <End Role="Composer" Type="Self.Composer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musicien">
+        <PropertyRef Name="Code_Musicien" />
+      </Principal>
+      <Dependent Role="Composer">
+        <PropertyRef Name="Code_Musicien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Composer_Oeuvre">
+    <End Role="Oeuvre" Type="Self.Oeuvre" Multiplicity="0..1" />
+    <End Role="Composer" Type="Self.Composer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Oeuvre">
+        <PropertyRef Name="Code_Oeuvre" />
+      </Principal>
+      <Dependent Role="Composer">
+        <PropertyRef Name="Code_Oeuvre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Composition_Oeuvre_Composition">
+    <End Role="Composition" Type="Self.Composition" Multiplicity="0..1" />
+    <End Role="Composition_Oeuvre" Type="Self.Composition_Oeuvre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Composition">
+        <PropertyRef Name="Code_Composition" />
+      </Principal>
+      <Dependent Role="Composition_Oeuvre">
+        <PropertyRef Name="Code_Composition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Composition_Oeuvre_Oeuvre">
+    <End Role="Oeuvre" Type="Self.Oeuvre" Multiplicity="0..1" />
+    <End Role="Composition_Oeuvre" Type="Self.Composition_Oeuvre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Oeuvre">
+        <PropertyRef Name="Code_Oeuvre" />
+      </Principal>
+      <Dependent Role="Composition_Oeuvre">
+        <PropertyRef Name="Code_Oeuvre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contenir_Morceaux_Disque">
+    <End Role="Disque" Type="Self.Disque" Multiplicity="0..1" />
+    <End Role="Composition_Disque" Type="Self.Composition_Disque" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disque">
+        <PropertyRef Name="Code_Disque" />
+      </Principal>
+      <Dependent Role="Composition_Disque">
+        <PropertyRef Name="Code_Disque" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contenir_Morceaux_Morceaux">
+    <End Role="Enregistrement" Type="Self.Enregistrement" Multiplicity="0..1" />
+    <End Role="Composition_Disque" Type="Self.Composition_Disque" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enregistrement">
+        <PropertyRef Name="Code_Morceau" />
+      </Principal>
+      <Dependent Role="Composition_Disque">
+        <PropertyRef Name="Code_Morceau" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Direction_Morceaux">
+    <End Role="Enregistrement" Type="Self.Enregistrement" Multiplicity="0..1" />
+    <End Role="Direction" Type="Self.Direction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enregistrement">
+        <PropertyRef Name="Code_Morceau" />
+      </Principal>
+      <Dependent Role="Direction">
+        <PropertyRef Name="Code_Morceau" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Direction_Musicien">
+    <End Role="Musicien" Type="Self.Musicien" Multiplicity="0..1" />
+    <End Role="Direction" Type="Self.Direction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musicien">
+        <PropertyRef Name="Code_Musicien" />
+      </Principal>
+      <Dependent Role="Direction">
+        <PropertyRef Name="Code_Musicien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Direction_Orchestres">
+    <End Role="Orchestres" Type="Self.Orchestres" Multiplicity="0..1" />
+    <End Role="Direction" Type="Self.Direction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orchestres">
+        <PropertyRef Name="Code_Orchestre" />
+      </Principal>
+      <Dependent Role="Direction">
+        <PropertyRef Name="Code_Orchestre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Disque_Album">
+    <End Role="Album" Type="Self.Album" Multiplicity="1" />
+    <End Role="Disque" Type="Self.Disque" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Album">
+        <PropertyRef Name="Code_Album" />
+      </Principal>
+      <Dependent Role="Disque">
+        <PropertyRef Name="Code_Album" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Editeur_Pays">
+    <End Role="Pays" Type="Self.Pays" Multiplicity="0..1" />
+    <End Role="Editeur" Type="Self.Editeur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pays">
+        <PropertyRef Name="Code_Pays" />
+      </Principal>
+      <Dependent Role="Editeur">
+        <PropertyRef Name="Code_Pays" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Instrumentation_Instrument">
+    <End Role="Instrument" Type="Self.Instrument" Multiplicity="0..1" />
+    <End Role="Instrumentation" Type="Self.Instrumentation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instrument">
+        <PropertyRef Name="Code_Instrument" />
+      </Principal>
+      <Dependent Role="Instrumentation">
+        <PropertyRef Name="Code_Instrument" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Instrumentation_Oeuvre">
+    <End Role="Oeuvre" Type="Self.Oeuvre" Multiplicity="0..1" />
+    <End Role="Instrumentation" Type="Self.Instrumentation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Oeuvre">
+        <PropertyRef Name="Code_Oeuvre" />
+      </Principal>
+      <Dependent Role="Instrumentation">
+        <PropertyRef Name="Code_Oeuvre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Interpréter_Instrument">
+    <End Role="Instrument" Type="Self.Instrument" Multiplicity="0..1" />
+    <End Role="Interpreter" Type="Self.Interpreter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instrument">
+        <PropertyRef Name="Code_Instrument" />
+      </Principal>
+      <Dependent Role="Interpreter">
+        <PropertyRef Name="Code_Instrument" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Interpréter_Morceaux">
+    <End Role="Enregistrement" Type="Self.Enregistrement" Multiplicity="0..1" />
+    <End Role="Interpreter" Type="Self.Interpreter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enregistrement">
+        <PropertyRef Name="Code_Morceau" />
+      </Principal>
+      <Dependent Role="Interpreter">
+        <PropertyRef Name="Code_Morceau" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Interpréter_Musicien">
+    <End Role="Musicien" Type="Self.Musicien" Multiplicity="0..1" />
+    <End Role="Interpreter" Type="Self.Interpreter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musicien">
+        <PropertyRef Name="Code_Musicien" />
+      </Principal>
+      <Dependent Role="Interpreter">
+        <PropertyRef Name="Code_Musicien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Musicien_Instrument">
+    <End Role="Instrument" Type="Self.Instrument" Multiplicity="0..1" />
+    <End Role="Musicien" Type="Self.Musicien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instrument">
+        <PropertyRef Name="Code_Instrument" />
+      </Principal>
+      <Dependent Role="Musicien">
+        <PropertyRef Name="Code_Instrument" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Musicien_Musicien">
+    <End Role="Pays" Type="Self.Pays" Multiplicity="0..1" />
+    <End Role="Musicien" Type="Self.Musicien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pays">
+        <PropertyRef Name="Code_Pays" />
+      </Principal>
+      <Dependent Role="Musicien">
+        <PropertyRef Name="Code_Pays" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Musicien_Musicien1">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+    <End Role="Musicien" Type="Self.Musicien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="Code_Genre" />
+      </Principal>
+      <Dependent Role="Musicien">
+        <PropertyRef Name="Code_Genre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Oeuvre_Type_Morceaux">
+    <End Role="Type_Morceaux" Type="Self.Type_Morceaux" Multiplicity="0..1" />
+    <End Role="Oeuvre" Type="Self.Oeuvre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type_Morceaux">
+        <PropertyRef Name="Code_Type" />
+      </Principal>
+      <Dependent Role="Oeuvre">
+        <PropertyRef Name="Code_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Classique_Web_2017ModelStoreContainer">
+    <EntitySet Name="Abonne" EntityType="Self.Abonne" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Achat" EntityType="Self.Achat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Album" EntityType="Self.Album" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Composer" EntityType="Self.Composer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Composition" EntityType="Self.Composition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Composition_Disque" EntityType="Self.Composition_Disque" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Composition_Oeuvre" EntityType="Self.Composition_Oeuvre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Direction" EntityType="Self.Direction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Disque" EntityType="Self.Disque" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Editeur" EntityType="Self.Editeur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Enregistrement" EntityType="Self.Enregistrement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Instrument" EntityType="Self.Instrument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Instrumentation" EntityType="Self.Instrumentation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Interpreter" EntityType="Self.Interpreter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Musicien" EntityType="Self.Musicien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Oeuvre" EntityType="Self.Oeuvre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orchestres" EntityType="Self.Orchestres" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pays" EntityType="Self.Pays" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Type_Morceaux" EntityType="Self.Type_Morceaux" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Abonné__Code_Pay__236943A5" Association="Self.FK__Abonné__Code_Pay__236943A5">
+      <End Role="Pays" EntitySet="Pays" />
+      <End Role="Abonne" EntitySet="Abonne" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Achat_Abonné" Association="Self.FK_Achat_Abonné">
+      <End Role="Abonne" EntitySet="Abonne" />
+      <End Role="Achat" EntitySet="Achat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Achat_Enregistrement" Association="Self.FK_Achat_Enregistrement">
+      <End Role="Enregistrement" EntitySet="Enregistrement" />
+      <End Role="Achat" EntitySet="Achat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Album_Editeur" Association="Self.FK_Album_Editeur">
+      <End Role="Editeur" EntitySet="Editeur" />
+      <End Role="Album" EntitySet="Album" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Album_Genre" Association="Self.FK_Album_Genre">
+      <End Role="Genre" EntitySet="Genre" />
+      <End Role="Album" EntitySet="Album" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Composer_Musicien" Association="Self.FK_Composer_Musicien">
+      <End Role="Musicien" EntitySet="Musicien" />
+      <End Role="Composer" EntitySet="Composer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Composer_Oeuvre" Association="Self.FK_Composer_Oeuvre">
+      <End Role="Oeuvre" EntitySet="Oeuvre" />
+      <End Role="Composer" EntitySet="Composer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Composition_Oeuvre_Composition" Association="Self.FK_Composition_Oeuvre_Composition">
+      <End Role="Composition" EntitySet="Composition" />
+      <End Role="Composition_Oeuvre" EntitySet="Composition_Oeuvre" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Composition_Oeuvre_Oeuvre" Association="Self.FK_Composition_Oeuvre_Oeuvre">
+      <End Role="Oeuvre" EntitySet="Oeuvre" />
+      <End Role="Composition_Oeuvre" EntitySet="Composition_Oeuvre" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contenir_Morceaux_Disque" Association="Self.FK_Contenir_Morceaux_Disque">
+      <End Role="Disque" EntitySet="Disque" />
+      <End Role="Composition_Disque" EntitySet="Composition_Disque" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contenir_Morceaux_Morceaux" Association="Self.FK_Contenir_Morceaux_Morceaux">
+      <End Role="Enregistrement" EntitySet="Enregistrement" />
+      <End Role="Composition_Disque" EntitySet="Composition_Disque" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Direction_Morceaux" Association="Self.FK_Direction_Morceaux">
+      <End Role="Enregistrement" EntitySet="Enregistrement" />
+      <End Role="Direction" EntitySet="Direction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Direction_Musicien" Association="Self.FK_Direction_Musicien">
+      <End Role="Musicien" EntitySet="Musicien" />
+      <End Role="Direction" EntitySet="Direction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Direction_Orchestres" Association="Self.FK_Direction_Orchestres">
+      <End Role="Orchestres" EntitySet="Orchestres" />
+      <End Role="Direction" EntitySet="Direction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Disque_Album" Association="Self.FK_Disque_Album">
+      <End Role="Album" EntitySet="Album" />
+      <End Role="Disque" EntitySet="Disque" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Editeur_Pays" Association="Self.FK_Editeur_Pays">
+      <End Role="Pays" EntitySet="Pays" />
+      <End Role="Editeur" EntitySet="Editeur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Instrumentation_Instrument" Association="Self.FK_Instrumentation_Instrument">
+      <End Role="Instrument" EntitySet="Instrument" />
+      <End Role="Instrumentation" EntitySet="Instrumentation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Instrumentation_Oeuvre" Association="Self.FK_Instrumentation_Oeuvre">
+      <End Role="Oeuvre" EntitySet="Oeuvre" />
+      <End Role="Instrumentation" EntitySet="Instrumentation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Interpréter_Instrument" Association="Self.FK_Interpréter_Instrument">
+      <End Role="Instrument" EntitySet="Instrument" />
+      <End Role="Interpreter" EntitySet="Interpreter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Interpréter_Morceaux" Association="Self.FK_Interpréter_Morceaux">
+      <End Role="Enregistrement" EntitySet="Enregistrement" />
+      <End Role="Interpreter" EntitySet="Interpreter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Interpréter_Musicien" Association="Self.FK_Interpréter_Musicien">
+      <End Role="Musicien" EntitySet="Musicien" />
+      <End Role="Interpreter" EntitySet="Interpreter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Musicien_Instrument" Association="Self.FK_Musicien_Instrument">
+      <End Role="Instrument" EntitySet="Instrument" />
+      <End Role="Musicien" EntitySet="Musicien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Musicien_Musicien" Association="Self.FK_Musicien_Musicien">
+      <End Role="Pays" EntitySet="Pays" />
+      <End Role="Musicien" EntitySet="Musicien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Musicien_Musicien1" Association="Self.FK_Musicien_Musicien1">
+      <End Role="Genre" EntitySet="Genre" />
+      <End Role="Musicien" EntitySet="Musicien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Oeuvre_Type_Morceaux" Association="Self.FK_Oeuvre_Type_Morceaux">
+      <End Role="Type_Morceaux" EntitySet="Type_Morceaux" />
+      <End Role="Oeuvre" EntitySet="Oeuvre" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
