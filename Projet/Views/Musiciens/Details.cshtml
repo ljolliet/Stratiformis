@@ -1,0 +1,82 @@
+﻿@model Projet.Musicien
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Musicien</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom_Musicien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom_Musicien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prenom_Musicien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prenom_Musicien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Annee_Naissance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Annee_Naissance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Annee_Mort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Annee_Mort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre.Libelle_Abrege)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre.Libelle_Abrege)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Instrument.Nom_Instrument)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instrument.Nom_Instrument)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pays.Nom_Pays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pays.Nom_Pays)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Code_Musicien }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
