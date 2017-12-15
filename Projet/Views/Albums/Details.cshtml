@@ -31,7 +31,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Pochette)
+            <img src=@Url.Action("Photo", "Album", new { id = Html.DisplayFor(model => model.Pochette)   }) />
         </dd>
 
         <dt>

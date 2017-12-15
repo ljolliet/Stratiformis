@@ -366,16 +366,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Musiciens\Create.cshtml" />
-    <Content Include="Views\Musiciens\Delete.cshtml" />
     <Content Include="Views\Musiciens\Details.cshtml" />
-    <Content Include="Views\Musiciens\Edit.cshtml" />
     <Content Include="Views\Musiciens\Index.cshtml" />
-    <Content Include="Views\Albums\Create.cshtml" />
-    <Content Include="Views\Albums\Delete.cshtml" />
     <Content Include="Views\Albums\Details.cshtml" />
-    <Content Include="Views\Albums\Edit.cshtml" />
     <Content Include="Views\Albums\Index.cshtml" />
+    <Content Include="Views\Musiciens\InitialDetails.cshtml" />
+    <Content Include="Views\Albums\Photo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
