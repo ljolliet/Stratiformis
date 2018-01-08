@@ -9,10 +9,13 @@
 <div>
     <h4>Album</h4>
     <hr />
+
     <dl class="dl-horizontal">
+        
         <dt>
             @Html.DisplayNameFor(model => model.Titre_Album)
         </dt>
+
 
         <dd>
             @Html.DisplayFor(model => model.Titre_Album)
@@ -57,10 +60,14 @@
         <dd>
             @Html.DisplayFor(model => model.Genre.Libelle_Abrege)
         </dd>
+        <dt>
+            @Html.ActionLink("Album Suivant", "Next", "Albums")
+        </dt>
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Code_Album }) |
     @Html.ActionLink("Back to List", "Index")
+
 </p>

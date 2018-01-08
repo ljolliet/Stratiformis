@@ -22,7 +22,7 @@ namespace Projet.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Jolliet et Tricha.";
 
             return View();
         }
