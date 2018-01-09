@@ -71,6 +71,6 @@
 
 </p>
 <p>    
-        @Html.ActionLink("Album Suivant", "Details", new { id = Model.Code_Album + 1 })    |
-        @Html.ActionLink("Album Précédent", "Details", new { id = Model.Code_Album - 1 })
+    @Html.ActionLink("Album Précédent", "Details", new { id = Model.Code_Album - 1 }) |
+    @Html.ActionLink("Album Suivant", "Details", new { id = Model.Code_Album + 1 })
 </p>

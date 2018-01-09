@@ -40,6 +40,17 @@ namespace Projet.Controllers
             }
             return View(musicien);
         }
+        //GET: ListeCompositeurs
+        public ActionResult ListeCompositeurs()
+        {
+            var musicien = db.Musicien.Include(m => m.Genre).Include(m => m.Instrument).Include(m => m.Pays).
+                Join(db.Composer, 
+                mus => mus.Code_Musicien, 
+                comp => comp.Code_Musicien, 
+                (mus, comp) => new { Musicien = mus, Composer = comp });
+
+            return View(musicien.ToList());
+        }
 
     }
 }

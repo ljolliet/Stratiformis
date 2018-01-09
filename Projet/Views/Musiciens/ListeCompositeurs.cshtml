@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Projet.Musicien>
+@{
+    ViewBag.Title = "ListeCompositeurs";
+    Layout = "Compositions";
+}
+
+<h2>ListeCompositeurs</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom_Musicien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prenom_Musicien)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom_Musicien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prenom_Musicien)
+            </td>
+        </tr>
+    }
+
+</table>
+
