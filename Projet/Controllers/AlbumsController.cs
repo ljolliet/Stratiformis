@@ -40,13 +40,7 @@ namespace Projet.Controllers
             }
             return View(album);
         }
-
-        public ActionResult Next(int id)
-        {
-            Console.WriteLine("SHATAP");
-            return HttpNotFound();
-        }
-
+        
 
     }
 }

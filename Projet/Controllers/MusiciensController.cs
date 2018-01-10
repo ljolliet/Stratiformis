@@ -35,15 +35,21 @@ namespace Projet.Controllers
             return View(musicien);
         }
         //GET: ListeCompositeurs
-        public ActionResult ListeCompositeurs()
-        {
-
+        public ActionResult ListeCompositeurs(string compo)
+        {      
+            
+            if(compo == null)            
+                compo = "";
+              
             var musicien = (from m in db.Musicien
+                            where m.Nom_Musicien.StartsWith(compo)
                             join comp in db.Composer
                             on m.Code_Musicien equals comp.Code_Musicien
                             select  m).Distinct();
             return View(musicien.ToList());
         }
+
+   
 
     }
 }

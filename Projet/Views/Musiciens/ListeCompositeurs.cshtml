@@ -4,8 +4,15 @@
 }
 
 <h2>Compositeurs</h2>
+@using (Html.BeginForm("ListeCompositeurs", "Musiciens"))
+{
+    @Html.TextBox("Compo")
+    <input type="submit" value="Rechercher" />
+}
 
 <table class="table">
+    
+
     <tr>
         <th>
             Nom
