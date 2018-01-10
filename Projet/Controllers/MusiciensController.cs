@@ -17,8 +17,13 @@ namespace Projet.Controllers
         // GET: Musiciens
         public ActionResult Index()
         {
-            var musicien = db.Musicien.Include(m => m.Genre).Include(m => m.Instrument).Include(m => m.Pays);
+            var musicien = db.Musicien.Include(m => m.Genre).Include(m => m.Pays);
             return View(musicien.ToList());
+        }
+        public ActionResult Photo(int id)
+        {
+            var music = db.Musicien.Single(g => g.Code_Musicien == id);
+            return File(music.Photo, "image/jpeg");
         }
         // GET: Musiciens/Details/5
         public ActionResult Details(int? id)

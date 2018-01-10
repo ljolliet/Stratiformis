@@ -7,11 +7,11 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Musicien</h4>
+    <h4>Compositeur</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Nom_Musicien)
+            Nom
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Prenom_Musicien)
+            Prénom
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Annee_Naissance)
+            Année de naissance
         </dt>
 
         <dd>
@@ -35,23 +35,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Annee_Mort)
+            Année de décès
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Annee_Mort)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Photo)
+            <img src=@Url.Action("Photo", "Musiciens", new { id = Html.DisplayFor(model => model.Code_Musicien)   }) />
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Genre.Libelle_Abrege)
+            Genre
         </dt>
 
         <dd>
@@ -59,15 +55,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Instrument.Nom_Instrument)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Instrument.Nom_Instrument)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Pays.Nom_Pays)
+            Pays
         </dt>
 
         <dd>
@@ -77,6 +65,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Code_Musicien }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Retour", "ListeCompositeurs")
 </p>

@@ -11,7 +11,7 @@
 }
 
 <table class="table">
-    
+
 
     <tr>
         <th>
@@ -30,6 +30,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Prenom_Musicien)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Code_Musicien }) 
             </td>
         </tr>
     }

@@ -40,7 +40,6 @@ namespace Projet.Controllers
             }
             return View(album);
         }
-        
 
     }
 }
