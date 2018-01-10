@@ -20,12 +20,6 @@ namespace Projet.Controllers
             var musicien = db.Musicien.Include(m => m.Genre).Include(m => m.Instrument).Include(m => m.Pays);
             return View(musicien.ToList());
         }
-        public ActionResult InitialDetails()
-        {
-            var musicien = db.Musicien.Include(m => m.Genre).Include(m => m.Instrument).Include(m => m.Pays).Where(m=> m.Nom_Musicien.StartsWith("B") );
-            return View(musicien.ToList());
-        }
-
         // GET: Musiciens/Details/5
         public ActionResult Details(int? id)
         {
@@ -43,12 +37,11 @@ namespace Projet.Controllers
         //GET: ListeCompositeurs
         public ActionResult ListeCompositeurs()
         {
-            var musicien = db.Musicien.Include(m => m.Genre).Include(m => m.Instrument).Include(m => m.Pays).
-                Join(db.Composer, 
-                mus => mus.Code_Musicien, 
-                comp => comp.Code_Musicien, 
-                (mus, comp) => new { Musicien = mus, Composer = comp });
 
+            var musicien = (from m in db.Musicien
+                            join comp in db.Composer
+                            on m.Code_Musicien equals comp.Code_Musicien
+                            select  m).Distinct();
             return View(musicien.ToList());
         }
 
