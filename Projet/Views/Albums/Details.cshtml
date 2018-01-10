@@ -11,9 +11,9 @@
     <hr />
 
     <dl class="dl-horizontal">
-        
+
         <dt>
-            @Html.DisplayNameFor(model => model.Titre_Album)
+            Titre
         </dt>
 
 
@@ -22,21 +22,14 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Annee_Album)
+            Année
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Annee_Album)
         </dd>
-        <dt>
-            if(Model.Pochette != null)
-            {
-            @Html.DisplayNameFor(model => model.Pochette)
-            }
-        </dt>
-
         <dd>
-            <img src=@Url.Action("Photo", "Album", new { id = Html.DisplayFor(model => model.Pochette)   }) />
+             <img src=@Url.Action("Photo", "Albums", new { id = Html.DisplayFor(model => model.Code_Album)   }) />
         </dd>
 
         <dt>
@@ -48,7 +41,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Editeur.Nom_Editeur)
+            Editeur
         </dt>
 
         <dd>
@@ -56,21 +49,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Genre.Libelle_Abrege)
+            Genre
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Genre.Libelle_Abrege)
         </dd>
-    
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Code_Album }) |
-    @Html.ActionLink("Back to List", "Index")
-
-</p>
-<p>    
     @Html.ActionLink("Album Précédent", "Details", new { id = Model.Code_Album - 1 }) |
     @Html.ActionLink("Album Suivant", "Details", new { id = Model.Code_Album + 1 })
 </p>

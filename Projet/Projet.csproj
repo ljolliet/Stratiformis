@@ -373,6 +373,7 @@
     <Content Include="Views\Musiciens\InitialDetails.cshtml" />
     <Content Include="Views\Albums\Photo.cshtml" />
     <Content Include="Views\Musiciens\ListeCompositeurs.cshtml" />
+    <Content Include="Views\Albums\ListeAlbums.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

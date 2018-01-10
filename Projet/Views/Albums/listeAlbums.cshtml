@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Projet.Album>
+@{
+    ViewBag.Title = "ListeAlbums";
+}
+
+<h2>Albums</h2>
+ <table class="table">
+
+
+    <tr>
+        <th>
+            Titre
+        </th>
+        <th>
+            Année
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titre_Album)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Annee_Album)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Code_Album })
+            </td>
+        </tr>
+    }
+
+</table>
+   
+
