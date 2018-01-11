@@ -63,9 +63,8 @@
             @Html.DisplayFor(modelItem => item.Pays.Nom_Pays)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Code_Musicien }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Code_Musicien }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Code_Musicien })
+            @Html.ActionLink("Details", "Details", new { id=item.Code_Musicien }) 
+
         </td>
     </tr>
 }

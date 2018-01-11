@@ -4,18 +4,17 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+    <h2>Détails</h2>
+    <h1>Albums</h1>
 
 <div>
-    <h4>Album</h4>
-    <hr />
+    
 
     <dl class="dl-horizontal">
 
         <dt>
             Titre
         </dt>
-
 
         <dd>
             @Html.DisplayFor(model => model.Titre_Album)
@@ -29,7 +28,7 @@
             @Html.DisplayFor(model => model.Annee_Album)
         </dd>
         <dd>
-             <img src=@Url.Action("Photo", "Albums", new { id = Html.DisplayFor(model => model.Code_Album)   }) />
+             <img src=@Url.Action("Pochette", "Albums", new { id = Html.DisplayFor(model => model.Code_Album)   }) />
         </dd>
 
         <dt>
@@ -59,6 +58,7 @@
     </dl>
 </div>
 <p>
+    @Html.ActionLink("Morceaux", "ListeEnregistrements", "Albums", new { id = Model.Code_Album }, null) </br>
     @Html.ActionLink("Album Précédent", "Details", new { id = Model.Code_Album - 1 }) |
     @Html.ActionLink("Album Suivant", "Details", new { id = Model.Code_Album + 1 })
 </p>

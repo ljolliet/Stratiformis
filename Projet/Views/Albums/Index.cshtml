@@ -53,9 +53,7 @@
             @Html.DisplayFor(modelItem => item.Genre.Libelle_Abrege)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Code_Album }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Code_Album }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Code_Album })
+            @Html.ActionLink("Details", "Details", new { id=item.Code_Album }) 
         </td>
     </tr>
 }

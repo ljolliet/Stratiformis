@@ -1,13 +1,17 @@
 ﻿@model IEnumerable<Projet.Album>
 @{
-    ViewBag.Title = "ListeAlbums";
+    ViewBag.Title = "Albums";
 }
 
-<h2>Albums</h2>
-<h1>@ViewBag.Nom  @ViewBag.Prenom</h1>
- <table class="table">
+<h2>listeAlbumsRecherche</h2>
 
+@using (Html.BeginForm("ListeAlbumsRecherche", "Albums"))
+{
+    @Html.TextBox("Album")
+    <input type="submit" value="Rechercher" />
+}
 
+<table class="table">
     <tr>
         <th>
             Titre
@@ -39,5 +43,6 @@
     }
 
 </table>
-   
+
+
 
