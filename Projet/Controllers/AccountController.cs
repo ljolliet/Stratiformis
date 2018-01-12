@@ -92,12 +92,12 @@ namespace Projet.Controllers
 
             // Ceci ne comptabilise pas les échecs de connexion pour le verrouillage du compte
             // Pour que les échecs de mot de passe déclenchent le verrouillage du compte, utilisez shouldLockout: true
-            if (model.userName == mdpAbo.Login && model.Password == mdpAbo.Password)
-                result = true;  
-            //var result = await SignInManager.PasswordSignInAsync(model.userName, model.Password, true,true);
+            /*if (model.userName == mdpAbo.Login && model.Password == mdpAbo.Password)
+                result = true;  */
+            var result = await SignInManager.PasswordSignInAsync(model.userName, model.Password, true,true);
             switch (result)
             {
-                case true:
+                case SignInStatus.Success:                    
                     return RedirectToLocal(returnUrl);
               /*  case SignInStatus.LockedOut:
                     return View("Lockout");
