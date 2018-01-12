@@ -1,0 +1,77 @@
+﻿@model Projet.Oeuvre
+@{
+    ViewBag.Title = "Details";
+}
+<div>
+    <h4>Oeuvre</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Compositeur
+        </dt>
+
+        <dd>
+            @ViewBag.Nom  @ViewBag.Prenom
+        </dd>
+        <dt>
+            Titre
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titre_Oeuvre)
+        </dd>
+
+        <dt>
+            Sous Titre
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sous_Titre)
+        </dd>
+
+        <dt>
+            Tonalité
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tonalite)
+        </dd>
+
+        <dt>
+            Année
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Annee)
+        </dd>
+
+        <dt>
+            Opus
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opus)
+        </dd>
+
+        <dt>
+            Numéro de l'opus
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numéro_Opus)
+        </dd>
+
+        <dt>
+            Type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type_Morceaux.Libelle_Type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

@@ -11,7 +11,13 @@
     
 
     <dl class="dl-horizontal">
+        <dt>
+            Compositeur
+        </dt>
 
+        <dd>
+            @ViewBag.Nom  @ViewBag.Prenom
+        </dd>
         <dt>
             Titre
         </dt>
@@ -27,16 +33,9 @@
         <dd>
             @Html.DisplayFor(model => model.Annee_Album)
         </dd>
+
         <dd>
             <img src=@Url.Action("Pochette", "Albums", new { id = Html.DisplayFor(model => model.Code_Album)    }) width="350px" />
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ASIN)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ASIN)
         </dd>
 
         <dt>
@@ -58,7 +57,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Morceaux", "ListeEnregistrements", "Enregistrements", new { id = Model.Code_Album }, null) </br>
+    @Html.ActionLink("Morceaux", "ListeEnregistrements", "Enregistrements", new { id = Model.Code_Album }, null) </br> </br>
     @Html.ActionLink("Album Précédent", "Details", new { id = Model.Code_Album - 1 }) |
     @Html.ActionLink("Album Suivant", "Details", new { id = Model.Code_Album + 1 })
 </p>

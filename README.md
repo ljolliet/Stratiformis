@@ -1,13 +1,14 @@
-# e-commerceWebSite
+﻿# e-commerceWebSite
 ASPMVC
 
 TO DO List : 
-éviter les bugs lié à "album suivant" et "précédent"
+éviter les bugs lié à "album suivant" et "précédent" ou supprimer ? 
 nom du compositeur sur liste album et recherche
-garder la recherche sur la recherche d'album
 back to list
 et les return en général
-
+Problème de recherche sur les albums
+Erreur dans le nom de compositeur dans le détail de l'album
+Introduire Oeuvre réellement 
 
 
 Une page d'accueil présentant le site

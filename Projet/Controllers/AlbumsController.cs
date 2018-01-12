@@ -43,8 +43,14 @@ namespace Projet.Controllers
             {
                 return HttpNotFound();
             }
+
+            var data = db.Musicien.Single(g => g.Code_Musicien == id);
+            ViewBag.Nom = data.Nom_Musicien;
+            ViewBag.Prenom = data.Prenom_Musicien;
+
             return View(album);
         }
+        // GET: Albums/listeAlbums/5
         public ActionResult listeAlbums(int? id)
         {
             if (id == null)
@@ -54,6 +60,7 @@ namespace Projet.Controllers
             var album = (from a in db.Album
                          join gen in db.Genre on a.Code_Genre equals gen.Code_Genre
                          join mus in db.Musicien on gen.Code_Genre equals mus.Code_Genre
+                         join comp in db.Composer on mus.Code_Musicien equals comp.Code_Musicien
                          where mus.Code_Musicien == id
                          select a).Distinct();
 
@@ -61,9 +68,11 @@ namespace Projet.Controllers
             ViewBag.Nom = data.Nom_Musicien;
             ViewBag.Prenom = data.Prenom_Musicien;
 
-            return View(album);
+            return View(album.ToList());
 
         }
+        // GET: Albums/listeAlbumsRecherche/5
+
         public ActionResult listeAlbumsRecherche(string alb)
         {
             if (alb == null)
@@ -73,7 +82,7 @@ namespace Projet.Controllers
                          join gen in db.Genre on a.Code_Genre equals gen.Code_Genre
                          join mus in db.Musicien on gen.Code_Genre equals mus.Code_Genre
                          where a.Titre_Album.StartsWith(alb)
-                         select a).Distinct();
+                         select a);
 
             return View(album.ToList());
 
