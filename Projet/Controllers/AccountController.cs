@@ -12,14 +12,18 @@ using Projet.Models;
 
 namespace Projet.Controllers
 {
+    
     [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        bool result;
 
+        private Classique_Web_2017Entities db = new Classique_Web_2017Entities();
         public AccountController()
         {
+            
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -68,6 +72,19 @@ namespace Projet.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+
+
+            var nomAbo = (from a in db.Abonne                      
+                        where a.Login == model.userName
+                        select a).Single();
+
+            var mdpAbo = (from a in db.Abonne
+                          where a.Password == model.Password
+                          select a).Single();
+            
+            
+            
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -75,18 +92,20 @@ namespace Projet.Controllers
 
             // Ceci ne comptabilise pas les échecs de connexion pour le verrouillage du compte
             // Pour que les échecs de mot de passe déclenchent le verrouillage du compte, utilisez shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            if (model.userName == mdpAbo.Login && model.Password == mdpAbo.Password)
+                result = true;  
+            //var result = await SignInManager.PasswordSignInAsync(model.userName, model.Password, true,true);
             switch (result)
             {
-                case SignInStatus.Success:
+                case true:
                     return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
+              /*  case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
+                case SignInStatus.Failure:*/
                 default:
-                    ModelState.AddModelError("", "Tentative de connexion non valide.");
+                    ModelState.AddModelError("", nomAbo.Login + " " + nomAbo.Password);
                     return View(model);
             }
         }
@@ -151,7 +170,7 @@ namespace Projet.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.userName, Email = model.userName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -172,18 +191,7 @@ namespace Projet.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/ConfirmEmail
-        [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
-        {
-            if (userId == null || code == null)
-            {
-                return View("Error");
-            }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
-        }
+   
 
         //
         // GET: /Account/ForgotPassword
@@ -202,7 +210,7 @@ namespace Projet.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
+                var user = await UserManager.FindByNameAsync(model.userName);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Ne révélez pas que l'utilisateur n'existe pas ou qu'il n'est pas confirmé
@@ -248,7 +256,7 @@ namespace Projet.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByNameAsync(model.userName);
             if (user == null)
             {
                 // Ne révélez pas que l'utilisateur n'existe pas
@@ -343,7 +351,8 @@ namespace Projet.Controllers
                     // Si l'utilisateur n'a pas de compte, invitez alors celui-ci à créer un compte
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { userName = loginInfo.DefaultUserName });
+                    // A MOFIDIER
             }
         }
 
@@ -367,7 +376,7 @@ namespace Projet.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.userName, Email = model.userName };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

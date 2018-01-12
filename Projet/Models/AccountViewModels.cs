@@ -6,8 +6,9 @@ namespace Projet.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Courrier électronique")]
-        public string Email { get; set; }
+        [DataType(DataType.Text)]
+        [Display(Name = "Nom d'utilisateur")]
+        public string userName { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -42,16 +43,17 @@ namespace Projet.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Courrier électronique")]
-        public string Email { get; set; }
+        [DataType(DataType.Text)]
+        [Display(Name = "Nom d'utilisateur")]
+        public string userName { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Courrier électronique")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Nom d'utilisateur")]
+        [DataType(DataType.Text)]
+        public string userName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -65,9 +67,9 @@ namespace Projet.Models
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Courrier électronique")]
-        public string Email { get; set; }
+        [DataType(DataType.Text)]
+        [Display(Name = "Nom d'utilisateur ")]
+        public string userName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 6)]
@@ -83,11 +85,9 @@ namespace Projet.Models
 
     public class ResetPasswordViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required]        
         [Display(Name = "Courrier électronique")]
-        public string Email { get; set; }
-
+        public string userName { get; set; }
         [Required]
         [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 6)]
         [DataType(DataType.Password)]
@@ -105,8 +105,8 @@ namespace Projet.Models
     public class ForgotPasswordViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "E-mail")]
-        public string Email { get; set; }
+        [DataType(DataType.Text)]        
+        [Display(Name = "Nom d'utilisateur")]
+        public string userName { get; set; }
     }
 }

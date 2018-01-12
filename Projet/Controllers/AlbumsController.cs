@@ -71,7 +71,7 @@ namespace Projet.Controllers
             return View(album.ToList());
 
         }
-        // GET: Albums/listeAlbumsRecherche/5
+        // GET: Albums/listeAlbumsRecherche
 
         public ActionResult listeAlbumsRecherche(string alb)
         {
