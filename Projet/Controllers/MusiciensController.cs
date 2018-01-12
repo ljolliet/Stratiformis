@@ -47,9 +47,9 @@ namespace Projet.Controllers
                 compo = "";
               
             var musicien = (from m in db.Musicien
-                            where m.Nom_Musicien.StartsWith(compo)
                             join comp in db.Composer
                             on m.Code_Musicien equals comp.Code_Musicien
+                            where m.Nom_Musicien.StartsWith(compo)
                             select  m).Distinct();
             return View(musicien.ToList());
         }

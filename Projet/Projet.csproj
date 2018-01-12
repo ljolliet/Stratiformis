@@ -288,6 +288,7 @@
     <Compile Include="Type_Morceaux.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\Home\EnregistrementsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -374,8 +375,9 @@
     <Content Include="Views\Albums\Photo.cshtml" />
     <Content Include="Views\Musiciens\ListeCompositeurs.cshtml" />
     <Content Include="Views\Albums\ListeAlbums.cshtml" />
-    <Content Include="Views\Albums\listeEnregistrements.cshtml" />
     <Content Include="Views\Albums\listeAlbumsRecherche.cshtml" />
+    <Content Include="Views\Enregistrements\Index.cshtml" />
+    <Content Include="Views\Enregistrements\listeEnregistrements.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

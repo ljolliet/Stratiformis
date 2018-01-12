@@ -3,7 +3,7 @@
     ViewBag.Title = "Albums";
 }
 
-<h2>listeAlbumsRecherche</h2>
+<h2>Albums</h2>
 
 @using (Html.BeginForm("ListeAlbumsRecherche", "Albums"))
 {
@@ -28,16 +28,13 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Titre_Album)
+                @Html.ActionLink((item.Titre_Album), "Details", new { id = item.Code_Album })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Annee_Album)
             </td>
             <td>
                 <img src=@Url.Action("Pochette", "Albums", new { id = Html.DisplayFor(modelItem => item.Code_Album)   }) width="150px" />
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Code_Album })
             </td>
         </tr>
     }

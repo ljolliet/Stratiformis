@@ -75,25 +75,8 @@ namespace Projet.Controllers
                          where a.Titre_Album.StartsWith(alb)
                          select a).Distinct();
 
-            return View(album);
+            return View(album.ToList());
 
-        }
-        public ActionResult listeEnregistrements(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var enregistrement = (from en in db.Enregistrement
-                                  join compo in db.Composition_Disque on en.Code_Morceau equals compo.Code_Morceau
-                                  join dis in db.Disque on compo.Code_Disque equals dis.Code_Disque
-                                  join a in db.Album on dis.Code_Album equals a.Code_Album
-                                  where a.Code_Album == id
-                                  select en);
-            var data = db.Album.Single(g => g.Code_Album == id);
-            ViewBag.Titre_Album = data.Titre_Album;
-
-            return View(enregistrement);
         }
 
     }
