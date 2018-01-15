@@ -8,8 +8,9 @@ back to list
 et les return en général
 Problème de recherche sur les albums
 Erreur dans le nom de compositeur dans le détail de l'album
-Introduire Oeuvre réellement 
 
+Navigation Oeuvres
+Back to list avec resultat de la recherche
 
 Une page d'accueil présentant le site
 Une page "à propos", décrivant le travail réalisé et précisant la liste des auteurs du site (le binôme), et éventuellement les difficultés rencontrées 

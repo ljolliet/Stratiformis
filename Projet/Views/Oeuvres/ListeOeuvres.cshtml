@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Projet.Oeuvre>
+@{
+    ViewBag.Title = "ListeOeuvres";
+}
+
+<h2>Oeuvres</h2>
+@using (Html.BeginForm("ListeOeuvres", "Oeuvres"))
+{
+    @Html.TextBox("data")
+    <input type="submit" value="Rechercher" />
+}
+
+<table class="table">
+
+
+    <tr>
+        <th>
+            Titre
+        </th>
+
+        <th>
+            Type
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink((item.Titre_Oeuvre), "Details", new { id = item.Code_Oeuvre })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type_Morceaux.Libelle_Type)
+            </td>
+        </tr>
+    }
+
+</table>

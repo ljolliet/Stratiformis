@@ -20,7 +20,7 @@
             Année
         </th>
         <th>
-            Pochette
+            @*Pochette*@
         </th>
     </tr>
 
@@ -34,7 +34,7 @@
                 @Html.DisplayFor(modelItem => item.Annee_Album)
             </td>
             <td>
-                <img src=@Url.Action("Pochette", "Albums", new { id = Html.DisplayFor(modelItem => item.Code_Album)   }) width="150px" />
+                @*<img src=@Url.Action("Pochette", "Albums", new { id = Html.DisplayFor(modelItem => item.Code_Album)   }) width="150px" />*@
             </td>
         </tr>
     }

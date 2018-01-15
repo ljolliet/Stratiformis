@@ -45,6 +45,18 @@ namespace Projet.Controllers
 
             return View(oeuvre);
         }
+        public ActionResult ListeOeuvres(string data)
+        {
+            if (data == null)
+                data = "";
+
+            var oeuvre = (from o in db.Oeuvre
+                          join comp in db.Composer on o.Code_Oeuvre equals comp.Code_Oeuvre
+                          join mus in db.Musicien on comp.Code_Musicien equals mus.Code_Musicien
+                          where o.Titre_Oeuvre.StartsWith(data)
+                          select o).Include(o => o.Type_Morceaux);
+            return View(oeuvre.ToList());
+        }
     }
 
       
