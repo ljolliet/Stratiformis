@@ -380,7 +380,8 @@
     <Content Include="Views\Enregistrements\listeEnregistrements.cshtml" />
     <Content Include="Views\Oeuvres\Details.cshtml" />
     <Content Include="Views\Oeuvres\Index.cshtml" />
-    <Content Include="Views\Oeuvres\ListeOeuvres.cshtml" />
+    <Content Include="Views\Oeuvres\ListeOeuvresRecherche.cshtml" />
+    <Content Include="Views\Oeuvres\ListeOeuvresFromCompositeur.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

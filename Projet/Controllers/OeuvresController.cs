@@ -45,7 +45,29 @@ namespace Projet.Controllers
 
             return View(oeuvre);
         }
-        public ActionResult ListeOeuvres(string data)
+        public ActionResult ListeOeuvresFromCompositeur(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+
+            var oeuvre = (from o in db.Oeuvre
+                          join comp in db.Composer on o.Code_Oeuvre equals comp.Code_Oeuvre
+                          join mus in db.Musicien on comp.Code_Musicien equals mus.Code_Musicien
+                          where mus.Code_Musicien == id
+                          select o).Distinct();
+
+            var data = db.Musicien.Single(g => g.Code_Musicien == id);
+            ViewBag.Nom = data.Nom_Musicien;
+            ViewBag.Prenom = data.Prenom_Musicien;
+            ViewBag.Code = data.Code_Musicien;
+
+            return View(oeuvre.ToList());
+        }
+
+        public ActionResult ListeOeuvresRecherche(string data)
         {
             if (data == null)
                 data = "";

@@ -5,6 +5,11 @@
 
 <h2>Enregistrements</h2>
 <h1>@ViewBag.Titre_Album</h1>
+
+<p>
+    @Html.ActionLink("Album", "Details", "Albums", new { id = ViewBag.Code }, null) </br>
+</p>
+
 <table class="table">
 
 

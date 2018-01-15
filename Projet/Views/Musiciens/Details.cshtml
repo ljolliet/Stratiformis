@@ -57,7 +57,7 @@
         <dt>
             Pays
         </dt>
-
+         
         <dd>
             @Html.DisplayFor(model => model.Pays.Nom_Pays)
         </dd>
@@ -66,6 +66,8 @@
 </div>
 <p>
     @Html.ActionLink("Albums", "ListeAlbums", "Albums", new { id = Model.Code_Musicien }, null) </br>
+    @Html.ActionLink("Oeuvres", "ListeOeuvresFromCompositeur", "Oeuvres", new { id = Model.Code_Musicien }, null) </br>
+
     @Html.ActionLink("Retour", "ListeCompositeurs")
 
 </p>

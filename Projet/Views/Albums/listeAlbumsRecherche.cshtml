@@ -4,12 +4,13 @@
 }
 
 <h2>Albums</h2>
-
 @using (Html.BeginForm("ListeAlbumsRecherche", "Albums"))
 {
-    @Html.TextBox("Album")
+    @Html.TextBox("alb")
     <input type="submit" value="Rechercher" />
 }
+
+
 
 <table class="table">
     <tr>

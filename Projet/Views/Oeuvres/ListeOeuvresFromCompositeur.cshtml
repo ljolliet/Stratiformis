@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<Projet.Oeuvre>
 @{
-    ViewBag.Title = "ListeOeuvres";
+    ViewBag.Title = "ListeOeuvresFromCompositeur";
 }
 
 <h2>Oeuvres</h2>
-@using (Html.BeginForm("ListeOeuvres", "Oeuvres"))
-{
-    @Html.TextBox("data")
-    <input type="submit" value="Rechercher" />
-}
+<h1>@ViewBag.Nom  @ViewBag.Prenom</h1>
+<p>
+    @Html.ActionLink("Compositeur", "Details", "Musiciens", new { id = ViewBag.Code }, null) </br>
+</p>
 
 <table class="table">
 
@@ -30,9 +29,10 @@
                 @Html.ActionLink((item.Titre_Oeuvre), "Details", new { id = item.Code_Oeuvre })
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Type_Morceaux.Libelle_Type)
+               @Html.DisplayFor(modelItem => item.Type_Morceaux.Libelle_Type)
             </td>
         </tr>
     }
 
 </table>
+

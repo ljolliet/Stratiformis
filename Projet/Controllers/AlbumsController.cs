@@ -63,10 +63,12 @@ namespace Projet.Controllers
                          join comp in db.Composer on mus.Code_Musicien equals comp.Code_Musicien
                          where mus.Code_Musicien == id
                          select a).Distinct();
+            
 
             var data = db.Musicien.Single(g => g.Code_Musicien == id);
             ViewBag.Nom = data.Nom_Musicien;
             ViewBag.Prenom = data.Prenom_Musicien;
+            ViewBag.Code = data.Code_Musicien;
 
             return View(album.ToList());
 
@@ -81,8 +83,9 @@ namespace Projet.Controllers
             var album = (from a in db.Album
                          join gen in db.Genre on a.Code_Genre equals gen.Code_Genre
                          join mus in db.Musicien on gen.Code_Genre equals mus.Code_Genre
+                         join comp in db.Composer on mus.Code_Musicien equals comp.Code_Musicien
                          where a.Titre_Album.StartsWith(alb)
-                         select a);
+                         select a).Distinct();
 
             return View(album.ToList());
 
