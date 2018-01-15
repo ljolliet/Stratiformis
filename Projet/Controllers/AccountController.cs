@@ -9,24 +9,24 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Projet.Models;
+using System.Configuration;
 
 namespace Projet.Controllers
 {
-    
+
     [Authorize]
     public class AccountController : Controller
     {
+        private Classique_Web_2017Entities db = new Classique_Web_2017Entities();
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        bool result;
 
-        private Classique_Web_2017Entities db = new Classique_Web_2017Entities();
         public AccountController()
         {
-            
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -38,9 +38,9 @@ namespace Projet.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -72,19 +72,6 @@ namespace Projet.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-
-
-            var nomAbo = (from a in db.Abonne                      
-                        where a.Login == model.userName
-                        select a).Single();
-
-            var mdpAbo = (from a in db.Abonne
-                          where a.Password == model.Password
-                          select a).Single();
-            
-            
-            
-
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -92,20 +79,18 @@ namespace Projet.Controllers
 
             // Ceci ne comptabilise pas les échecs de connexion pour le verrouillage du compte
             // Pour que les échecs de mot de passe déclenchent le verrouillage du compte, utilisez shouldLockout: true
-            /*if (model.userName == mdpAbo.Login && model.Password == mdpAbo.Password)
-                result = true;  */
-            var result = await SignInManager.PasswordSignInAsync(model.userName, model.Password, true,true);
+            var result = await SignInManager.PasswordSignInAsync(model.userName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
-                case SignInStatus.Success:                    
+                case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
-              /*  case SignInStatus.LockedOut:
+                case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:*/
+                case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", nomAbo.Login + " " + nomAbo.Password);
+                    ModelState.AddModelError("", "Tentative de connexion non valide.");
                     return View(model);
             }
         }
@@ -139,7 +124,7 @@ namespace Projet.Controllers
             // Si un utilisateur entre des codes incorrects pendant un certain intervalle, le compte de cet utilisateur 
             // est alors verrouillé pendant une durée spécifiée. 
             // Vous pouvez configurer les paramètres de verrouillage du compte dans IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -174,8 +159,15 @@ namespace Projet.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    Abonne abo = new Abonne();
+                    abo.Password = model.Password;
+                    abo.Login = model.userName;
+                    abo.Nom_Abonne = model.userName;
+                    db.Abonne.Add(abo);
+                    db.SaveChanges();
                     
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // Pour plus d'informations sur l'activation de la confirmation du compte et la réinitialisation du mot de passe, consultez http://go.microsoft.com/fwlink/?LinkID=320771
                     // Envoyer un message électronique avec ce lien
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -191,7 +183,18 @@ namespace Projet.Controllers
             return View(model);
         }
 
-   
+        //
+        // GET: /Account/ConfirmEmail
+        [AllowAnonymous]
+        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return View("Error");
+            }
+            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+        }
 
         //
         // GET: /Account/ForgotPassword
@@ -351,8 +354,7 @@ namespace Projet.Controllers
                     // Si l'utilisateur n'a pas de compte, invitez alors celui-ci à créer un compte
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { userName = loginInfo.DefaultUserName });
-                    // A MOFIDIER
+                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { userName = loginInfo.Email });
             }
         }
 
@@ -431,7 +433,6 @@ namespace Projet.Controllers
 
             base.Dispose(disposing);
         }
-
         #region Applications auxiliaires
         // Utilisé(e) pour la protection XSRF lors de l'ajout de connexions externes
         private const string XsrfKey = "XsrfId";

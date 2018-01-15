@@ -24,8 +24,8 @@
         </th>
     </tr>
 
-    @foreach (var item in Model)
-    {
+    @foreach (var item in Model )
+            {
         <tr>
             <td>
                 @Html.ActionLink((item.Titre_Album), "Details", new { id = item.Code_Album })
