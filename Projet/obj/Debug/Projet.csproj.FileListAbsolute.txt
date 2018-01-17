@@ -197,7 +197,6 @@
 \\iut.bx1\Etudiants\Home\ytricha\Desktop\e-commerceWebSite\Projet\bin\fr\Microsoft.Owin.Security.Google.resources.dll
 \\iut.bx1\Etudiants\Home\ytricha\Desktop\e-commerceWebSite\Projet\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
 \\iut.bx1\Etudiants\Home\ytricha\Desktop\e-commerceWebSite\Projet\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-\\iut.bx1\Etudiants\Home\ytricha\Desktop\e-commerceWebSite\Projet\obj\Debug\Projet.csprojResolveAssemblyReference.cache
 \\iut.bx1\Etudiants\Home\ytricha\Desktop\e-commerceWebSite\Projet\obj\Debug\Projet.dll
 \\iut.bx1\Etudiants\Home\ytricha\Desktop\e-commerceWebSite\Projet\obj\Debug\Projet.pdb
 \\iut.bx1\Etudiants\Home\ljolliet\Documents\e-commerceWebSite\Projet\obj\Debug\Projet.csprojResolveAssemblyReference.cache
@@ -301,3 +300,7 @@
 \\iut.bx1\Etudiants\Home\ljolliet\Documents\e-commerceWebSite\Projet\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 \\iut.bx1\Etudiants\Home\ljolliet\Documents\e-commerceWebSite\Projet\obj\Debug\Projet.dll
 \\iut.bx1\Etudiants\Home\ljolliet\Documents\e-commerceWebSite\Projet\obj\Debug\Projet.pdb
+<<<<<<< Updated upstream
+=======
+\\iut.bx1\Etudiants\Home\ytricha\Desktop\e-commerceWebSite\Projet\obj\Debug\Projet.csprojResolveAssemblyReference.cache
+>>>>>>> Stashed changes
