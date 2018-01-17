@@ -25,11 +25,6 @@ namespace Projet.Controllers
             var album = db.Album.Single(g => g.Code_Album == id);
             return File(album.Pochette, "image/jpeg");
         }
-        public ActionResult Extrait(int? id)
-        {
-            var enregistrement = db.Enregistrement.Single(g => g.Code_Morceau == id);
-            return File(enregistrement.Extrait, "mp3");
-        }
 
         // GET: Albums/Details/5
         public ActionResult Details(int? id)

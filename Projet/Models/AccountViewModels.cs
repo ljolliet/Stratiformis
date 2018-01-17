@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Projet.Models
 {
+
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
@@ -38,6 +41,7 @@ namespace Projet.Models
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
+
     }
 
     public class ForgotViewModel
@@ -63,7 +67,7 @@ namespace Projet.Models
         [Display(Name = "Mémoriser le mot de passe ?")]
         public bool RememberMe { get; set; }
     }
-
+   
     public class RegisterViewModel
     {
         [Required]
@@ -80,7 +84,9 @@ namespace Projet.Models
         [DataType(DataType.Password)]
         [Display(Name = "Confirmer le mot de passe ")]
         [Compare("Password", ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
-        public string ConfirmPassword { get; set; }
+        public string ConfirmPassword { get; set; }     
+            
+        
     }
 
     public class ResetPasswordViewModel

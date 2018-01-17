@@ -65,6 +65,13 @@ namespace Projet.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult Panier()
+        {
+
+            return View();
+        }
+
         //
         // POST: /Account/Login
         [HttpPost]
@@ -160,11 +167,11 @@ namespace Projet.Controllers
                 if (result.Succeeded)
                 {
                     Abonne abo = new Abonne();
-                    abo.Password = model.Password;
-                    abo.Login = model.userName;
-                    abo.Nom_Abonne = model.userName;
-                    db.Abonne.Add(abo);
-                    db.SaveChanges();
+                    //abo.Password = model.Password;
+                    //abo.Login = model.userName;
+                    //abo.Nom_Abonne = model.userName;
+                    //db.Abonne.Add(abo);
+                    //db.SaveChanges();
                     
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 

@@ -75,6 +75,11 @@ namespace Projet.Controllers
             return View(model);
         }
 
+        public ActionResult Details()
+        {
+            return View();
+        }
+
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]

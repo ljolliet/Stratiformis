@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Projet.Models.RegisterViewModel>
+@{
+    ViewBag.Title = "Panier";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+
+    <tr>
+        <th>
+            Titre
+        </th>
+        <th>
+            Durée
+        </th>
+        <th>
+            Extrait
+        </th>
+        <th>
+            Prix
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duree)
+            </td>
+            <td>
+                <audio src=@Url.Action("Extrait", "Albums", new { id = Html.DisplayFor(modelItem => item.Code_Morceau)   }) controls />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prix) €
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+
