@@ -28,3 +28,7 @@ Panier Vide ?
 
 
 Verif des bugs et de la navigation.
+
+Details Oeuvres -> Liste Enregistrements
+Details Album -> Liste Oeuvres
+Details Oeuvres -> Liste Albums ( qui contiennent oeuvres ) 

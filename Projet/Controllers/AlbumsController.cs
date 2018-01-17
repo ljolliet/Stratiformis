@@ -86,5 +86,26 @@ namespace Projet.Controllers
 
         }
 
+        public ActionResult listeAlbumsFromOeuvres(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var album = (from oe in db.Oeuvre
+                           join comp in db.Composer on oe.Code_Oeuvre equals comp.Code_Oeuvre
+                           join mus in db.Musicien on comp.Code_Musicien equals mus.Code_Musicien
+                           join pay in db.Pays on mus.Code_Pays equals pay.Code_Pays
+                           join edi in db.Editeur on pay.Code_Pays equals edi.Code_Pays
+                           join alb in db.Album on edi.Code_Editeur equals alb.Code_Editeur
+                           where oe.Code_Oeuvre == id
+                           select alb).Distinct();
+            var data = db.Album.Single(g => g.Code_Album == id);
+            ViewBag.Titre_Album = data.Titre_Album;
+            ViewBag.Code = id;
+            return View(album);
+        }
     }
-}
+
+    }

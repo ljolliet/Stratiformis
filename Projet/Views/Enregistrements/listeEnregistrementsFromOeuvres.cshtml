@@ -39,7 +39,7 @@
                 @Html.DisplayFor(modelItem => item.Duree)
             </td>
             <td>
-                <audio src=@Url.Action("Extrait", "Albums", new { id = Html.DisplayFor(modelItem => item.Code_Morceau)}) controls />
+                <audio src=@Url.Action("Extrait", "Albums", new { id = Html.DisplayFor(modelItem => item.Code_Morceau)   }) controls />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Prix) €

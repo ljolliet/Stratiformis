@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Projet.Oeuvre>
+@{
+    ViewBag.Title = "Oeuvres";
+}
+
+
+<h2>Enregistrements</h2>
+<h1>@ViewBag.Titre_Oeuvre</h1>
+
+<p>
+    @Html.ActionLink("Album", "Details", "Oeuvres", new { id = ViewBag.Code }, null) </br>
+</p>
+
+<table class="table">
+
+
+    <tr>
+        <th>
+           Titre de l'Oeuvre
+        </th>
+        <th>
+            Type de morceaux
+        </th>
+       
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titre_Oeuvre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type_Morceaux.Libelle_Type)
+            </td>          
+        
+
+        </tr>
+    }
+
+</table>
+
+

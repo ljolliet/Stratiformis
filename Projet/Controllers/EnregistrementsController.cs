@@ -41,5 +41,22 @@ namespace Projet.Controllers
             ViewBag.Code = id; 
             return View(enregistrement);
         }
+
+        public ActionResult listeEnregistrementsFromOeuvres(int? id)
+        { 
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var enregistrement = (from enr in db.Enregistrement
+                                  join comp in db.Composition_Oeuvre on enr.Code_Composition  equals comp.Code_Composition
+                                  join oe in db.Oeuvre on comp.Code_Oeuvre equals oe.Code_Oeuvre                                  
+                                  where oe.Code_Oeuvre == id
+                                  select enr).Distinct();
+            //  var data = db.Oeuvre.Single(g => g.Code_Oeuvre == id);
+            //ViewBag.Titre_Album = data.Titre_Oeuvre;
+            ViewBag.Code = id;
+            return View(enregistrement);
+        }
     }
 }

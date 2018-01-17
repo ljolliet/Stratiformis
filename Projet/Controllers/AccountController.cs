@@ -166,8 +166,6 @@ namespace Projet.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-
-
                     Abonne abo = new Abonne();
                     abo.Password = model.Password;
                     abo.Login = model.Login;

@@ -79,7 +79,28 @@ namespace Projet.Controllers
                           select o).Include(o => o.Type_Morceaux);
             return View(oeuvre.ToList());
         }
+
+        public ActionResult ListeOeuvresFromAlbum(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var oeuvres = (from oe in db.Oeuvre
+                                  join comp in db.Composer on oe.Code_Oeuvre equals comp.Code_Oeuvre
+                                  join mus in db.Musicien on comp.Code_Musicien  equals mus.Code_Musicien
+                                  join gen in db.Genre on mus.Code_Genre equals gen.Code_Genre
+                                  join alb in db.Album on gen.Code_Genre equals alb.Code_Genre
+                                  where alb.Code_Album == id
+                                  select oe).Distinct();
+            var data = db.Album.Single(g => g.Code_Album== id);
+            ViewBag.Titre_Album = data.Titre_Album;
+            ViewBag.Code = id;
+            return View(oeuvres);
+        }
     }
+
+        
 
       
 }
