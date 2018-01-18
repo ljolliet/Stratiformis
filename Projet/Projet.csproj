@@ -383,10 +383,10 @@
     <Content Include="Views\Oeuvres\Index.cshtml" />
     <Content Include="Views\Oeuvres\ListeOeuvresRecherche.cshtml" />
     <Content Include="Views\Oeuvres\ListeOeuvresFromCompositeur.cshtml" />
-    <Content Include="Views\Account\Panier.cshtml" />
     <Content Include="Views\Oeuvres\listeOeuvresFromAlbum.cshtml" />
     <Content Include="Views\Enregistrements\listeEnregistrementsFromOeuvres.cshtml" />
     <Content Include="Views\Albums\listeAlbumsFromOeuvres.cshtml" />
+    <Content Include="Views\Enregistrements\panier.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

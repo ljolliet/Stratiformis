@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Projet.Enregistrement>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Panier</h1>
+
+
+
+<table class="table">
+
+    <tr>
+        <th>
+            Titre
+        </th>
+        <th>
+            Prix
+        </th>
+    </tr>
+    @{
+        double sum = 0;
+        int cpt = 0;
+
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prix) €
+                </td>
+
+            </tr>
+            if (item.Prix != null)
+            {
+                sum = sum + Convert.ToDouble(item.Prix);
+            }
+            cpt = cpt + 1;
+
+        }
+        <tr><td></td><td></td></tr>
+        <tr>
+            <td>
+                Total :
+            </td>
+            <td>
+                @sum €
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Nombre d'achats :
+            </td>
+            <td>
+                @cpt
+            </td>
+
+        </tr>
+
+
+    }
+</table>

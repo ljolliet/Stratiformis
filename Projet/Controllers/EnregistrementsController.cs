@@ -36,8 +36,8 @@ namespace Projet.Controllers
                                   join alb in db.Album on dis.Code_Album equals alb.Code_Album
                           where alb.Code_Album == id
                           select enr).Distinct();
-            var data = db.Album.Single(g => g.Code_Album == id);
-            ViewBag.Titre_Album = data.Titre_Album;
+          //  var data = db.Album.Single(g => g.Code_Album == id);
+           // ViewBag.Titre_Album = data.Titre_Album;
             ViewBag.Code = id; 
             return View(enregistrement);
         }
@@ -57,6 +57,49 @@ namespace Projet.Controllers
             //ViewBag.Titre_Album = data.Titre_Oeuvre;
             ViewBag.Code = id;
             return View(enregistrement);
+        }
+        public ActionResult panier()
+        {
+            //if (!Request.IsAuthenticated)
+            //{
+            //    return RedirectToAction("Login", "Account");
+            //}
+
+
+
+            if (Session["Panier"] == null)
+            {
+                Session["Panier"] = new List<int>();
+            }
+
+            List<int> mylist = new List<int>((List<int>)Session["Panier"]);
+
+            List<Enregistrement> panier = new List<Enregistrement>();
+
+            foreach (var item in mylist)
+            {
+                panier.Add(db.Enregistrement.Find(item));
+
+            }
+
+            return View(panier);
+        }
+        [Route("ajoutPanier/{id,code}")]
+        public ActionResult ajoutPanier(int? id, int code)
+        {
+            if (Session["Panier"] == null)
+            {
+                Session["Panier"] = new List<int>();
+            }
+
+            var items = (List<int>)Session["Panier"];
+            items.Add(id.Value);
+            Session["Panier"] = items;
+            ViewBag.Panier = Session["Panier"];
+
+            string chemin = "ListeEnregistrementsFromAlbum/" + code;
+
+            return RedirectToAction(chemin);
         }
     }
 }

@@ -65,12 +65,6 @@ namespace Projet.Controllers
             return View();
         }
 
-        [AllowAnonymous]
-        public ActionResult Panier()
-        {
-
-            return View();
-        }
 
         //
         // POST: /Account/Login
