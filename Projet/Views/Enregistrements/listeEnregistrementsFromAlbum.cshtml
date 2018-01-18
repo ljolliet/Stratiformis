@@ -7,6 +7,7 @@
 <h2>Enregistrements</h2>
 <h1>@ViewBag.Titre_Album</h1>
 
+
 <p>
     @Html.ActionLink("Album", "Details", "Albums", new { id = ViewBag.Code }, null) </br>
 </p>
@@ -45,11 +46,12 @@
                 @Html.DisplayFor(modelItem => item.Prix) €
             </td>
             <td>
-                @Html.ActionLink("Ajout au panier", "ajoutPanier", "Enregistrements", new { id = item.Code_Morceau, code = ViewBag.Code, fromAlbum = true }, null)
+                @Html.ActionLink("Ajout au panier", "ajoutPanier", "Enregistrements", new { id = item.Code_Morceau, code = ViewBag.Code, fromAlbum = true }, new { @class = "btnmakeqr" })
             </td>
         </tr>
     }
 
 </table>
+
 
 

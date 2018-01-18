@@ -24,6 +24,8 @@ namespace Projet.Controllers
             var enregistrement = db.Enregistrement.Single(g => g.Code_Morceau == id);
             return File(enregistrement.Extrait, "mp3");
         }
+
+        [Route("listeEnregistrementsFromAlbum/{id}")]
         public ActionResult listeEnregistrementsFromAlbum(int? id)
         {
             if (id == null)
@@ -36,9 +38,10 @@ namespace Projet.Controllers
                                   join alb in db.Album on dis.Code_Album equals alb.Code_Album
                           where alb.Code_Album == id
                           select enr).Distinct();
-          //  var data = db.Album.Single(g => g.Code_Album == id);
-           // ViewBag.Titre_Album = data.Titre_Album;
-            ViewBag.Code = id; 
+            var data = db.Album.Single(g => g.Code_Album == id);
+            ViewBag.Titre_Album = data.Titre_Album;
+            ViewBag.Code = id;
+            ViewBag.Message = "HHEEY";
             return View(enregistrement);
         }
 
@@ -97,18 +100,17 @@ namespace Projet.Controllers
             Session["Panier"] = items;
             ViewBag.Panier = Session["Panier"];
 
-            string chemin;
 
+
+            var titre = db.Enregistrement.Find(code).Titre;
+            string m = titre + " ajouté au panier";
             if (fromAlbum)
             {
-                chemin = "ListeEnregistrementsFromAlbum/" + code;
-            }
-            else
-            {
-                chemin = "ListeEnregistrementsFromOeuvres/" + code;
+                return RedirectToAction("ListeEnregistrementsFromAlbum", "Enregistrements", new { id = code });
             }
 
-            return RedirectToAction(chemin);
+                return RedirectToAction("ListeEnregistrementsFromOeuvres", "Enregistrements", new { id = code });
+
         }
     }
 }

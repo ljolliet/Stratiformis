@@ -21,8 +21,7 @@ Produit déjà achetés ne pouvant pas être réachetés
 
 voir qu'on a fait un achat
 supprimer
-
-Template
+supprimer panier 
 
 Verif des bugs et de la navigation.
 
