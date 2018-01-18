@@ -18,9 +18,12 @@ Depuis la page décrivant un album, un accès aux services Amazon affichant les 
 
 Produit déjà achetés ne pouvant pas être réachetés
 
-Après achat, retourner à la bonne méthode (enregistrementFromAlbum ou From Oeuvre)
 
 voir qu'on a fait un achat
+supprimer
 
-Mise en page 
+Template
+
 Verif des bugs et de la navigation.
+
+readme !

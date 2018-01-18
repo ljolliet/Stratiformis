@@ -45,7 +45,7 @@
                 @Html.DisplayFor(modelItem => item.Prix) €
             </td>
             <td>
-                @Html.ActionLink("Ajout au panier", "ajoutPanier", "Enregistrements", new { id = item.Code_Morceau, code = ViewBag.Code }, null)
+                @Html.ActionLink("Ajout au panier", "ajoutPanier", "Enregistrements", new { id = item.Code_Morceau, code = ViewBag.Code, fromAlbum = true }, null)
             </td>
         </tr>
     }

@@ -84,8 +84,8 @@ namespace Projet.Controllers
 
             return View(panier);
         }
-        [Route("ajoutPanier/{id,code}")]
-        public ActionResult ajoutPanier(int? id, int code)
+        [Route("ajoutPanier/{id,code,fromAlbum}")]
+        public ActionResult ajoutPanier(int? id, int code, bool fromAlbum)
         {
             if (Session["Panier"] == null)
             {
@@ -97,7 +97,16 @@ namespace Projet.Controllers
             Session["Panier"] = items;
             ViewBag.Panier = Session["Panier"];
 
-            string chemin = "ListeEnregistrementsFromAlbum/" + code;
+            string chemin;
+
+            if (fromAlbum)
+            {
+                chemin = "ListeEnregistrementsFromAlbum/" + code;
+            }
+            else
+            {
+                chemin = "ListeEnregistrementsFromOeuvres/" + code;
+            }
 
             return RedirectToAction(chemin);
         }
