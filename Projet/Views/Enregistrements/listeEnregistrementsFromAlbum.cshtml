@@ -1,12 +1,24 @@
 ﻿@model IEnumerable<Projet.Enregistrement>
+    
 @{
     ViewBag.Title = "Enregistrements";
 }
 
 
+@Scripts.Render("/bundles/jquery")
+<script type="text/javascript">{
+    window.onload=function()
+    {
+        document.getElementById("alertMessage").style.display='none'
+        document.getElementById("alertMessage").style.backgroundColor='green purple'
+    }
+    }
+</script>
+
+<div id="alertMessage" style="background-color:black; color:white;position:absolute;right:750px;font-size:15px"> L'Enregistrement a été ajouté à votre Panier </div>
+
 <h2>Enregistrements</h2>
 <h1>@ViewBag.Titre_Album</h1>
-
 
 <p>
     @Html.ActionLink("Album", "Details", "Albums", new { id = ViewBag.Code }, null) </br>
@@ -29,7 +41,7 @@
             Prix
         </th>
     </tr>
-
+    
     @foreach (var item in Model)
     {
         <tr>
@@ -46,12 +58,12 @@
                 @Html.DisplayFor(modelItem => item.Prix) €
             </td>
             <td>
-                @Html.ActionLink("Ajout au panier", "ajoutPanier", "Enregistrements", new { id = item.Code_Morceau, code = ViewBag.Code, fromAlbum = true }, new { @class = "btnmakeqr" })
+                @Html.ActionLink("Ajout au panier", "ajoutPanier", "Enregistrements", new { id = item.Code_Morceau, code = ViewBag.Code, fromAlbum = true }, null)
+                
             </td>
         </tr>
     }
 
 </table>
-
 
 
